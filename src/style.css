@@ -39,7 +39,7 @@ main {
   justify-content: space-between;
 }
 
-#add-task {
+#input {
   width: 100%;
   border: none;
   padding-left: 1rem;
@@ -87,4 +87,13 @@ main {
   padding: 1rem;
   cursor: pointer;
   background-color: rgb(235, 235, 235);
+}
+
+.vertical-menu {
+ border: solid 1px #fff;
+ cursor: pointer;
+}
+
+.vertical-menu:hover {
+  border: #000 solid 1px;
 }

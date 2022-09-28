@@ -1,22 +1,15 @@
 import './style.css';
+import Methods from './modules/storageMethods.js';
+import { reset } from 'axe-core';
 
+Methods.render();
 
-
-taskList.forEach((task) => {
-  const li = document.createElement('li');
-  const checkbox = document.createElement('input');
-  const label = document.createElement('label');
-  const br = document.createElement('br');
-
-  checkbox.type = 'checkbox';
-  checkbox.id = task.id;
-  checkbox.name = task.id;
-  label.htmlFor = task.id;
-  label.innerHTML = task.description;
-
-  li.classList.add('list-item');
-  list.appendChild(li);
-  li.appendChild(checkbox);
-  li.appendChild(label);
-  li.appendChild(br);
+const form = document.querySelector('#form');
+const input = document.querySelector('#input');
+const list = document.querySelector('#list');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  let description = input.value;
+  Methods.add(description); 
+  form.reset(); 
 });
