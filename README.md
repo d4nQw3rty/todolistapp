@@ -69,9 +69,9 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
+- Thank to Microverse for the opportunity to work on this project.
+- Thank my friend [Marco Oquendo](https://www.linkedin.com/in/marco-vinicio-oquendo-4a289156/) for the help and support.
+
 
 ## 📝 License
 
