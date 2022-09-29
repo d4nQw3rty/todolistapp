@@ -2,7 +2,15 @@ import Task from './taskConstructor.js';
 
 export default class Methods {
 
-
+  static setIndex() {
+    const storage = localStorage.getItem('tasks');
+    const tasks = storage ? JSON.parse(storage) : [];
+    if (tasks !== []) {
+      tasks.forEach((element, index) => { element.id = index; });
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+    return tasks;
+  }
 
   static add(description) {
 
@@ -16,16 +24,28 @@ export default class Methods {
     const list = document.querySelector('#list');
     list.innerHTML
       += `
-            <li id="Task${tasks.length}" class="list-item">
-              <input id="checkBox${tasks.length}" type="checkbox" name="completed" class="check">
-              <label for="check${tasks.length}">${tasks.length}</label>
+            <li id="Task ${tasks.length}" class="list-item">
+              <input id="checkBox ${tasks.length}" type="checkbox" name="completed" class="check">
+              <label for="check${tasks.length}">Task ${tasks.length}</label>
               <input value="${description}" type="text" name="description" class="description" disabled>
-              <div class="edit-menu">
+              <p class="vertical-menu show">
               &#8942
-              </div class="vertical-menu">
+              </p>
+              <div class="delete-btn hide"><button class="delete-btn" type='button'>Delete</button><button type='button' class="delete-btn">Save</button></div>
             </li>
           `;
     return tasks;
+  }
+
+  static remove(id) {
+    const storage = localStorage.getItem('tasks');
+    const tasks = storage ? JSON.parse(storage) : [];
+    if (tasks === []) return -1;
+    const removed = tasks.splice(id, 1);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    Methods.setIndex();    
+    Methods.render();
+    return removed;
   }
 
   static render() {
@@ -40,13 +60,14 @@ export default class Methods {
         const editableDisable = element.editable ? '' : 'disabled';
         list.innerHTML
         += `
-          <li id="e${element.id+1}" class="list-item" draggable="${element.editable}">
+          <li id="${element.id+1}" class="list-item" draggable="${element.editable}">
             <input id="check${element.id+1}" type="checkbox" name="completed" class="check" ${checked}>
-            <label for="check${element.id+1}">${element.id+1}</label>
+            <label for="check${element.id+1}">Task ${element.id+1}</label>
             <input value="${element.description}" type="text" name="description" class="description" ${editableDisable}>
-            <div class="vertical-menu">
+            <p class="vertical-menu show">
             &#8942;
-            </div>
+            </p>
+            <div class="delete-btn hide"><button class="delete-btn" type='button'>Delete</button><button type='button' class="delete-btn">Save</button></div>           
           </li>
         `;
       });

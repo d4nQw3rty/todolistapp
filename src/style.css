@@ -54,10 +54,6 @@ main {
   padding: 0 5px 10px 0;
 }
 
-#add-btn:active {
-  color: red;
-}
-
 #add-btn:hover {
   background: #000;
   color: #fff;
@@ -96,4 +92,18 @@ main {
 
 .vertical-menu:hover {
   border: #000 solid 1px;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: flex;
+  gap: 5px;
+}
+
+.description {
+  border: none;
+ 
 }
