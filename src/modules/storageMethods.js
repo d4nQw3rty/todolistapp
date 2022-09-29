@@ -69,7 +69,7 @@ export default class Methods {
         const checked = element.completed ? 'checked' : '';
         list.innerHTML
         += `
-          <li id="${element.index}" class="list-item" draggable="${element.editable}">
+          <li id="${element.index}" class="list-item">
             <input id="check${element.index}" type="checkbox" name="completed" class="check" ${checked}>
             <label for="check${element.index}">Task ${element.index}</label>
             <input value="${element.description}" type="text" name="description" class="description" disabled>
