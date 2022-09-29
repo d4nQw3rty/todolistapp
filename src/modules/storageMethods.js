@@ -1,7 +1,6 @@
 import Task from './taskConstructor.js';
 
 export default class Methods {
-
   static setIndex() {
     const storage = localStorage.getItem('tasks');
     const tasks = storage ? JSON.parse(storage) : [];
@@ -13,7 +12,6 @@ export default class Methods {
   }
 
   static add(description) {
-
     if (!description) return -1;
     const storage = localStorage.getItem('tasks');
     const tasks = storage ? JSON.parse(storage) : [];
@@ -43,24 +41,19 @@ export default class Methods {
     if (tasks === []) return -1;
     const removed = tasks.splice(id, 1);
     localStorage.setItem('tasks', JSON.stringify(tasks));
-    Methods.setIndex();    
+    Methods.setIndex();
     Methods.render();
     return removed;
   }
 
   static edit(newVal, id) {
-    
     const storage = localStorage.getItem('tasks');
     const tasks = storage ? JSON.parse(storage) : [];
     if (tasks === []) return -1;
     tasks[id].description = newVal;
     localStorage.setItem('tasks', JSON.stringify(tasks));
-    
+
     return newVal;
-   
-    
-
-
   }
 
   static render() {
@@ -71,14 +64,12 @@ export default class Methods {
     if (tasks !== []) {
       tasks.forEach((element) => {
         const checked = element.completed ? 'checked' : '';
-        const editableActive = element.editable ? 'active' : '';
-        const editableDisable = element.editable ? '' : 'disabled';
         list.innerHTML
         += `
-          <li id="${element.id+1}" class="list-item" draggable="${element.editable}">
-            <input id="check${element.id+1}" type="checkbox" name="completed" class="check" ${checked}>
-            <label for="check${element.id+1}">Task ${element.id+1}</label>
-            <input value="${element.description}" type="text" name="description" class="description" ${editableDisable}>
+          <li id="${element.id + 1}" class="list-item" draggable="${element.editable}">
+            <input id="check${element.id + 1}" type="checkbox" name="completed" class="check" ${checked}>
+            <label for="check${element.id + 1}">Task ${element.id + 1}</label>
+            <input value="${element.description}" type="text" name="description" class="description" disable>
             <p class="vertical-menu show">
             &#8942;
             </p>

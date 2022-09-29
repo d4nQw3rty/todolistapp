@@ -86,8 +86,8 @@ main {
 }
 
 .vertical-menu {
- border: solid 1px #fff;
- cursor: pointer;
+  border: solid 1px #fff;
+  cursor: pointer;
 }
 
 .vertical-menu:hover {
@@ -105,5 +105,4 @@ main {
 
 .description {
   border: none;
- 
 }
