@@ -37,5 +37,9 @@ list.addEventListener('click', (e) => {
     e.target.parentElement.previousElementSibling.classList.add('show');
     e.target.parentElement.previousElementSibling.classList.remove('hide');
     e.target.parentElement.previousElementSibling.previousElementSibling.setAttribute('disabled', 'disabled');
+    console.log(e.target.parentElement.previousElementSibling.previousElementSibling.value);
+    Methods.edit(e.target.parentElement.previousElementSibling.previousElementSibling.value, e.target.parentElement.parentElement.id-1 )   
   }
+
+ 
 });

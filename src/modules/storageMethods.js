@@ -48,6 +48,21 @@ export default class Methods {
     return removed;
   }
 
+  static edit(newVal, id) {
+    
+    const storage = localStorage.getItem('tasks');
+    const tasks = storage ? JSON.parse(storage) : [];
+    if (tasks === []) return -1;
+    tasks[id].description = newVal;
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    
+    return newVal;
+   
+    
+
+
+  }
+
   static render() {
     const storage = localStorage.getItem('tasks');
     const tasks = storage ? JSON.parse(storage) : [];
