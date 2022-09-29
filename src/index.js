@@ -1,39 +1,42 @@
 import './style.css';
+import Methods from './modules/storageMethods.js';
 
-const list = document.getElementById('list');
-const taskList = [
-  {
-    id: 1,
-    description: 'Task 1',
-    completed: false,
-  },
-  {
-    id: 2,
-    description: 'Task 2',
-    completed: false,
-  },
-  {
-    id: 3,
-    description: 'Task 3',
-    completed: false,
-  },
-];
+Methods.setIndex();
+Methods.render();
 
-taskList.forEach((task) => {
-  const li = document.createElement('li');
-  const checkbox = document.createElement('input');
-  const label = document.createElement('label');
-  const br = document.createElement('br');
+const form = document.querySelector('#form');
+const input = document.querySelector('#input');
+const list = document.querySelector('#list');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const description = input.value;
+  Methods.add(description);
+  Methods.render();
+  form.reset();
+});
 
-  checkbox.type = 'checkbox';
-  checkbox.id = task.id;
-  checkbox.name = task.id;
-  label.htmlFor = task.id;
-  label.innerHTML = task.description;
+list.addEventListener('click', (e) => {
+  if (e.target.classList.contains('vertical-menu')) {
+    e.target.classList.remove('show');
+    e.target.classList.add('hide');
+    e.target.nextElementSibling.classList.remove('hide');
+    e.target.nextElementSibling.classList.add('show');
+    e.target.previousElementSibling.removeAttribute('disabled');
+    e.target.previousElementSibling.focus();
+  }
 
-  li.classList.add('list-item');
-  list.appendChild(li);
-  li.appendChild(checkbox);
-  li.appendChild(label);
-  li.appendChild(br);
+  if (e.target.textContent === 'Delete') {
+    e.target.parentElement.parentElement.remove();
+    Methods.remove(e.target.parentElement.parentElement.id - 1);
+  }
+
+  if (e.target.textContent === 'Save') {
+    e.target.parentElement.classList.add('hide');
+    e.target.parentElement.classList.remove('show');
+    e.target.parentElement.previousElementSibling.classList.add('show');
+    e.target.parentElement.previousElementSibling.classList.remove('hide');
+    e.target.parentElement.previousElementSibling.previousElementSibling.setAttribute('disabled', 'disabled');
+    Methods.edit(e.target.parentElement.previousElementSibling.previousElementSibling.value,
+      e.target.parentElement.parentElement.id - 1);
+  }
 });
