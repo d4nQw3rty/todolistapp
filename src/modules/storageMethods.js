@@ -5,7 +5,7 @@ export default class Methods {
     const storage = localStorage.getItem('tasks');
     const tasks = storage ? JSON.parse(storage) : [];
     if (tasks !== []) {
-      tasks.forEach((element, index) => { element.id = index; });
+      tasks.forEach((element, index) => { element.index = index + 1; });
       localStorage.setItem('tasks', JSON.stringify(tasks));
     }
     return tasks;
@@ -15,21 +15,24 @@ export default class Methods {
     if (!description) return -1;
     const storage = localStorage.getItem('tasks');
     const tasks = storage ? JSON.parse(storage) : [];
-    const task = new Task(description, tasks.length);
+    const task = new Task(description, tasks.length + 1);
     tasks.push(task);
     localStorage.setItem('tasks', JSON.stringify(tasks));
 
     const list = document.querySelector('#list');
     list.innerHTML
       += `
-            <li id="Task ${tasks.length}" class="list-item">
-              <input id="checkBox ${tasks.length}" type="checkbox" name="completed" class="check">
-              <label for="check${tasks.length}">Task ${tasks.length}</label>
+            <li id="Task ${tasks.length + 1}" class="list-item">
+              <input id="checkBox ${tasks.length + 1}" type="checkbox" name="completed" class="check">
+              <label for="check${tasks.length + 1}">Task ${tasks.length + 1}</label>
               <input value="${description}" type="text" name="description" class="description" disabled>
               <p class="vertical-menu show">
               &#8942
               </p>
-              <div class="delete-btn hide"><button class="delete-btn" type='button'>Delete</button><button type='button' class="delete-btn">Save</button></div>
+              <div class="delete-btn hide">
+              <button class="delete-btn" type='button'>Delete</button>
+              <button type='button' class="delete-btn">Save</button>
+              </div>
             </li>
           `;
     return tasks;
@@ -66,14 +69,17 @@ export default class Methods {
         const checked = element.completed ? 'checked' : '';
         list.innerHTML
         += `
-          <li id="${element.id + 1}" class="list-item" draggable="${element.editable}">
-            <input id="check${element.id + 1}" type="checkbox" name="completed" class="check" ${checked}>
-            <label for="check${element.id + 1}">Task ${element.id + 1}</label>
-            <input value="${element.description}" type="text" name="description" class="description" disable>
+          <li id="${element.index}" class="list-item" draggable="${element.editable}">
+            <input id="check${element.index}" type="checkbox" name="completed" class="check" ${checked}>
+            <label for="check${element.index}">Task ${element.index}</label>
+            <input value="${element.description}" type="text" name="description" class="description" disabled>
             <p class="vertical-menu show">
             &#8942;
             </p>
-            <div class="delete-btn hide"><button class="delete-btn" type='button'>Delete</button><button type='button' class="delete-btn">Save</button></div>           
+            <div class="delete-btn hide">
+            <button class="delete-btn" type='button'>Delete</button>
+            <button type='button' class="delete-btn">Save</button>
+            </div>           
           </li>
         `;
       });
