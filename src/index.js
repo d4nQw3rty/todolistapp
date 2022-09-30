@@ -1,5 +1,6 @@
 import './style.css';
 import Methods from './modules/storageMethods.js';
+import Status from './modules/status.js';
 
 Methods.setIndex();
 Methods.render();
@@ -7,12 +8,22 @@ Methods.render();
 const form = document.querySelector('#form');
 const input = document.querySelector('#input');
 const list = document.querySelector('#list');
+const clear = document.querySelector('#clear');
+
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   const description = input.value;
   Methods.add(description);
   Methods.render();
   form.reset();
+});
+
+list.addEventListener('change', (e) => {
+  if (e.target.classList.contains('check')) {
+    const id = e.target.parentElement.id - 1;
+    Status.Complete(id);
+    Methods.render();
+  }
 });
 
 list.addEventListener('click', (e) => {
@@ -39,4 +50,9 @@ list.addEventListener('click', (e) => {
     Methods.edit(e.target.parentElement.previousElementSibling.previousElementSibling.value,
       e.target.parentElement.parentElement.id - 1);
   }
+});
+
+clear.addEventListener('click', () => {
+  Status.ClearCompleted();
+  Methods.render();
 });
