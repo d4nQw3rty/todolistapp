@@ -3,7 +3,7 @@
 import Methods from './storageMethods.js';
 
 window.localStorage = Storage.prototype;
-document.body.innerHTML = '<ol id='list'></ol>';
+document.body.innerHTML = '<ol id="list"></ol>';
 
 describe('Add task feature', () => {
   test('correct adding feature', () => {
