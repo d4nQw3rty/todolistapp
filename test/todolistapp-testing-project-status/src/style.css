@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body {
+  margin: auto;
+}
+
+header {
+  margin: auto;
+  max-width: 400px;
+}
+
+main {
+  margin: auto;
+  display: flex;
+  max-width: 500px;
+  align-items: center;
+  flex-direction: column;
+  background-color: #d3d3d3;
+}
+
+.list-title {
+  padding: 1rem;
+  text-align: center;
+}
+
+.to-do {
+  padding-top: 1rem;
+}
+
+#form {
+  width: 100%;
+  display: flex;
+  padding: 1rem;
+  justify-content: space-between;
+}
+
+#input {
+  width: 100%;
+  border: none;
+  padding-left: 1rem;
+  background-color: white;
+}
+
+#add-btn {
+  border: none;
+  cursor: pointer;
+  font-size: 2rem;
+  min-width: 20px;
+  padding: 0 5px 10px 0;
+}
+
+#add-btn:hover {
+  background: #000;
+  color: #fff;
+}
+
+#list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.list-item {
+  width: 100%;
+  display: flex;
+  padding: 0.5rem;
+  margin: 1px 1px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  flex-basis: 80%;
+}
+
+.clear {
+  width: 100%;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  background-color: rgb(235, 235, 235);
+}
+
+.clear:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.vertical-menu {
+  border: solid 1px #fff;
+  cursor: pointer;
+}
+
+.vertical-menu:hover {
+  border: #000 solid 1px;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: flex;
+  gap: 5px;
+}
+
+.description {
+  border: none;
+}
