@@ -32,3 +32,25 @@ describe('Update to complete status', () => {
     expect(localTask[0]).toBeTruthy();
   });
 });
+
+describe('Clear all Completed', () => {
+  Methods.add('Deleteme');
+  Methods.add('Delete me too');
+  Methods.add('Delete me eather');
+
+  test('check the local task length', () => {
+    const storage = localStorage.getItem('tasks');
+    const localTask = storage ? JSON.parse(storage) : [];
+    expect(localTask).toHaveLength(5);
+  });
+
+  Status.Complete(0);
+  Status.Complete(1);
+  Status.Complete(2);
+  test('Clicking "Clear all completed" button should filter local storage tasks', () => {
+    Status.ClearCompleted();
+    const storage = localStorage.getItem('tasks');
+    const localTask = storage ? JSON.parse(storage) : [];
+    expect(localTask).toHaveLength(3);
+  });
+});
